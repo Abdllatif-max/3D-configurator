@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Configurator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .color-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-bottom: 8px;
+        }
+        .color-option.selected {
+            border: 2px solid blue;
+        }
+    </style>
+</head>
+<body class="bg-white min-h-screen flex flex-col">
+    <div class="container mx-auto p-4 flex flex-col flex-grow">
+        <!-- Navigation / Sections -->
+        <nav class="flex justify-center space-x-4 bg-white p-4 mb-4">
+            <a href="#" class="font-bold text-lg flex flex-col items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v16a1 1 0 01-1 1H4a1 1 0 01-1-1V4z" />
+                </svg>
+                Models
+            </a>
+            <a href="#" class="font-bold text-lg text-blue-500 flex flex-col items-center" style="margin-left: 30px;">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 19.071A1 1 0 004 18.414V5.586a1 1 0 011.707-.707l7.071 7.071a1 1 0 010 1.414l-7.071 7.071z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.293 5.293a1 1 0 011.414 0l7.071 7.071a1 1 0 010 1.414l-7.071 7.071a1 1 0 01-1.414-1.414L16.586 12 11.293 6.707a1 1 0 010-1.414z" />
+                </svg>
+                Colours
+            </a>
+            <a href="#" class="font-bold text-lg flex flex-col items-center" style="margin-left: 30px;">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.742 10.344a8 8 0 10-9.799 9.798m2.574-9.978a4 4 0 11-1.248 4.194m2.684-7.934a8.06 8.06 0 012.79.295" />
+                </svg>
+                Wheels
+            </a>
+        </nav>
+
+        <div class="flex flex-grow">
+            <!-- Options Selection -->
+            <div class="bg-white p-4 mb-4 flex flex-col justify-center items-center">
+                <div class="color-option bg-gray-800 cursor-pointer" data-color="gray-800"></div>
+                <div class="color-option bg-gray-600 cursor-pointer" data-color="gray-600"></div>
+                <div class="color-option bg-red-600 cursor-pointer" data-color="red-600"></div>
+                <div class="color-option bg-gray-300 cursor-pointer" data-color="gray-300"></div>
+                <div class="color-option bg-gray-700 cursor-pointer" data-color="gray-700"></div>
+                <div class="color-option bg-blue-500 cursor-pointer" data-color="blue-500"></div>
+                <div class="color-option bg-orange-500 cursor-pointer" data-color="orange-500"></div>
+            </div>
+
+            <!-- Main View -->
+            <div class="flex-grow flex justify-center items-end">
+                <canvas id="app" class="bg-gray-100 w-full" style="height: calc(100vh - 200px);"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Summary Bar / Secondary Navigation -->
+    <div class="bg-gray-800 text-white p-4 flex justify-between">
+        <div class="font-bold text-lg">Series 2 Coupé</div>
+        <div class="font-bold text-lg">£25,764</div>
+        <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded">NEXT</button>
+    </div>
+
+    <script>
+        document.querySelectorAll('.color-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                // Change the main view image based on the selected color
+                // Here you can add your logic to change the 3D model's color
+            });
+        });
+    </script>
+    <script type="module" src="/configurator.js"></script>
+</body>
+</html>
